@@ -45,6 +45,7 @@
 
         .logo {
             height: 60px;
+            filter: drop-shadow(12px 8px 10px  orange);
         }
 
         nav ul {
@@ -173,6 +174,7 @@
             text-align: center;
             padding: 20px 0;
             transition: background-color 0.3s;
+            align-items: baseline;
         }
 
         /* Dark Mode Footer */
@@ -217,6 +219,19 @@
             bottom: 0;
             background-color: #ccc;
             transition: .4s;
+        }
+        /* Mobile Warning Styles */
+        #mobile-warning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffcc00;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            z-index: 1000;
         }
 
         .slider:before {
@@ -337,7 +352,11 @@
     </style>
 </head>
 <body>
+    
     <header id="header">
+        <div id="mobile-warning">
+            For the best experience, please switch to the desktop site because this site is optimised for Desktops/Laptop.
+        </div>
         <nav>
             <img src="RxBot.png" alt="RYNX BOT Logo" class="logo">
             <ul>
@@ -375,11 +394,7 @@
             <p>Our mission is to provide Discord server owners and administrators with a reliable and customizable bot solution that meets their specific needs. Whether you're managing a small community or a large gaming server, our bot has you covered.</p>
                 
             <p>At Discord RxBot, we are committed to continuous improvement and innovation. We value feedback from our users and actively incorporate it into our development process to ensure we deliver the best possible experience.</p>
-            <div class="owners">
-                <h3>Our Team</h3>
-                <p><strong>Rynx</strong> - Founder & Lead Developer.</p>
-                <p><strong>S2009</strong> - Co-Founder & JS Developer.</p>
-                <p><strong>HaiCLOP</strong> - Community Manager & Web Developer.</p>
+            
                 <p>Join our Discord community to connect with us and stay updated on our latest projects and offers.</p>
                 <div class="discord-link">
                     <a href="https://discord.gg/XKTkZvAaUY" target="_blank">Join Our Discord Server</a>
@@ -396,7 +411,7 @@
     <div class="cookies-modal" id="cookiesModal">
         <div class="cookies-content">
             <h2>Cookie Consent</h2>
-            <p>We use cookies to enhance your browsing experience, personalize content, and analyze our traffic. By clicking "Accept," you consent to our use of cookies. For more information, please read our <a href="#">Privacy Policy</a>.</p>
+            <p>We use cookies to enhance your browsing experience, personalize content, and analyze our traffic. By clicking "Accept," you consent to our use of cookies. For more information, please read our <a href="privacy.html">Privacy Policy</a>.</p>
             <div class="cookies-buttons">
                 <button class="accept" id="acceptCookies">Accept</button>
                 <button class="decline" id="declineCookies">Decline</button>
@@ -457,6 +472,10 @@
                     localStorage.setItem('darkMode', 'disabled');
                 }
             });
+
+            if (window.innerWidth < 764) {
+            document.getElementById('mobile-warning').style.display = 'block';
+        }
 
             // Cookies Modal
             const cookiesModal = document.getElementById('cookiesModal');
